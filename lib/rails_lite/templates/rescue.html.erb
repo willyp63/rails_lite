@@ -1,0 +1,11 @@
+<h1>RuntimeError</h1>
+
+<h3>Message: <%= e.message %></h3>
+
+<ul>
+  <% e.backtrace.each do |level| %>
+  <li>
+    <%= level %>
+  </li>
+  <% end %>
+</ul>

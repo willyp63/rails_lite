@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require 'rails_lite'
+
+case ARGV[0]
+when "new"
+  puts "creating new project..."
+when "server"
+  puts "starting the server..."
+else
+  puts "Unknown command #{ARGV[0]}!!"
+end
