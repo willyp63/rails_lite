@@ -90,7 +90,7 @@ class ModelBase
 
   def update
     DBConnection.execute(<<-SQL, *attribute_values[1..-1], id)
-      update
+      UPDATE
         #{self.class.table_name}
       SET
         #{col_setters}
@@ -101,6 +101,15 @@ class ModelBase
 
   def save
     id ? update : insert
+  end
+
+  def destroy
+    DBConnection.execute(<<-SQL, id)
+      DELETE FROM
+        #{self.class.table_name}
+      WHERE
+        id = ?
+    SQL
   end
 
   private

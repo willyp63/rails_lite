@@ -8,8 +8,8 @@ class Route
 
   # checks if pattern matches path and method matches request method
   def matches?(req)
-    req.request_method == http_method.to_s.upcase &&
-      req.path =~ pattern
+    method = req.params['_method'] || req.request_method
+    method == http_method.to_s.upcase && req.path =~ pattern
   end
 
   # use pattern to pull out route params (save for later?)
