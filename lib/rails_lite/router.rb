@@ -62,6 +62,8 @@ class Router
       route.run(req, res)
     else
       res.status = 404
+      res['Content-Type'] = "text/plain"
+      res.write("404 Nothing to see here...")
     end
   end
 end

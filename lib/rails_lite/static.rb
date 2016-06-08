@@ -21,8 +21,7 @@ class Static
   end
 
   def return_resource(resource_name)
-    resource_path = File.join(File.dirname(__FILE__),
-      "../public/", resource_name)
+    resource_path = Dir.pwd + "/public/" + resource_name
     begin
       content = File.read(resource_path)
       extension = resource_path[-3..-1]

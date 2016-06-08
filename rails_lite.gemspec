@@ -9,19 +9,21 @@ Gem::Specification.new do |s|
   s.authors     = ["Wil Pirino"]
   s.email       = 'wpirino1@gmail.com'
   s.files       = ["lib/rails_lite.rb",
+                    "lib/rails_lite/associatable.rb",
                     "lib/rails_lite/controller_base.rb",
+                    "lib/rails_lite/db_connection.rb",
                     "lib/rails_lite/flash.rb",
+                    "lib/rails_lite/model_base.rb",
                     "lib/rails_lite/router.rb",
+                    "lib/rails_lite/searchable.rb",
                     "lib/rails_lite/session.rb",
                     "lib/rails_lite/show_exceptions.rb",
-                    "lib/rails_lite/static.rb"]
+                    "lib/rails_lite/static.rb",
+                    "lib/rails_lite/templates/rescue.html.erb"]
 
   s.homepage    = 'http://rubygems.org/gems/rails_lite'
   s.license     = 'MIT'
 
   s.add_dependency 'rack'
   s.add_dependency 'activesupport'
-
-  s.add_development_dependency 'byebug'
-  s.add_development_dependency 'rspec'
 end

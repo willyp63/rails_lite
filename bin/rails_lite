@@ -4,9 +4,16 @@ require 'rails_lite'
 
 case ARGV[0]
 when "new"
-  puts "creating new project..."
+  unless ARGV[1]
+    puts "Please specifiy an app name ex. (rails_lite new ExampleAppName)"
+  else
+    RailsLite.create_app(ARGV[1])
+  end
 when "server"
-  puts "starting the server..."
+  RailsLite.load_app
+  RailsLite.start_server
+when "reset_db"
+  DBConnection.reset
 else
   puts "Unknown command #{ARGV[0]}!!"
 end
