@@ -2,18 +2,23 @@
 
 require 'rails_lite'
 
+# try to execute command
 case ARGV[0]
 when "new"
   unless ARGV[1]
-    puts "Please specifiy an app name ex. (rails_lite new ExampleAppName)"
+    puts "Specifiy a project name as second arguement"
   else
-    RailsLite.create_app(ARGV[1])
+    project_name = ARGV[1]
+    RailsLite.init_project(project_name)
   end
 when "server"
-  RailsLite.load_app
   RailsLite.start_server
-when "reset_db"
-  DBConnection.reset
+when "s" # alias
+  RailsLite.start_server
+when "reset_database"
+  RailsLite.reset_database
+when "rdb" # alias
+  RailsLite.reset_database
 else
-  puts "Unknown command #{ARGV[0]}!!"
+  puts "Unknown command '#{ARGV[0]}'"
 end

@@ -25,6 +25,7 @@ class Flash
     @now
   end
 
+  # only add curr_cookie to response
   def store_flash(res)
     res.set_cookie(COOKIE_NAME, path: '/', value: @curr_cookie.to_json)
   end

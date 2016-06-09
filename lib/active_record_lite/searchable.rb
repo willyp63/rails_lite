@@ -12,6 +12,7 @@ module Searchable
     SQL
   end
 
+  private
   def where_clause(params)
     params.keys.map {|col| "#{col} = ?"}.join(' AND ')
   end

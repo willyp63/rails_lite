@@ -1,21 +1,19 @@
-require_relative 'db_connection'
 require_relative 'searchable'
 require_relative 'associatable'
-require 'active_support/inflector'
-# NB: the attr_accessor we wrote in phase 0 is NOT used in the rest
-# of this project. It was only a warm up.
 
 class ModelBase
   extend Searchable
   extend Associatable
 
   def initialize(params = {})
+    # check for valid attributes
     params.each do |attr_name, _|
       unless self.class.columns.include?(attr_name.to_sym)
         raise "unknown attribute '#{attr_name}'"
       end
     end
 
+    # set attributes
     params.each do |attr_name, value|
       send("#{attr_name}=", value)
     end
@@ -33,26 +31,6 @@ class ModelBase
         attributes[column] = value
       end
     end
-  end
-
-  def self.columns
-    @columns ||= fetch_columns
-  end
-
-  def self.table_name=(table_name)
-    @table_name = table_name
-  end
-
-  def self.table_name
-    @table_name ||= self.to_s.tableize
-  end
-
-  def attributes
-    @attributes ||= {}
-  end
-
-  def attribute_values
-    self.class.columns.map {|attr_name| send(attr_name)}
   end
 
   def self.all
@@ -78,6 +56,19 @@ class ModelBase
     parse_all(results)[0]
   end
 
+  def save
+    id ? update : insert
+  end
+
+  def destroy
+    DBConnection.execute(<<-SQL, id)
+      DELETE FROM
+        #{self.class.table_name}
+      WHERE
+        id = ?
+    SQL
+  end
+
   def insert
     DBConnection.execute(<<-SQL, *attribute_values)
       INSERT INTO
@@ -99,17 +90,24 @@ class ModelBase
     SQL
   end
 
-  def save
-    id ? update : insert
+  def self.columns
+    @columns ||= fetch_columns
   end
 
-  def destroy
-    DBConnection.execute(<<-SQL, id)
-      DELETE FROM
-        #{self.class.table_name}
-      WHERE
-        id = ?
-    SQL
+  def self.table_name=(table_name)
+    @table_name = table_name
+  end
+
+  def self.table_name
+    @table_name ||= self.to_s.tableize
+  end
+
+  def attributes
+    @attributes ||= {}
+  end
+
+  def attribute_values
+    self.class.columns.map {|attr_name| send(attr_name)}
   end
 
   private

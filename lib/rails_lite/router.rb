@@ -12,15 +12,14 @@ class Route
     method == http_method.to_s.upcase && req.path =~ pattern
   end
 
-  # use pattern to pull out route params (save for later?)
-  # instantiate controller and call controller action
   def run(req, res)
-    match_data = pattern.match(req.path)
-    url_params = {}.tap do |params|
-      match_data.names.each {|name| params[name] = match_data[name]}
+    # use pattern to pull out route params
+    match_route = pattern.match(req.path)
+    route_params = {}.tap do |params|
+      match_route.names.each {|name| params[name] = match_route[name]}
     end
-
-    controller_class.new(req, res, url_params).invoke_action(action_name)
+    # init controller and call action
+    controller_class.new(req, res, route_params).invoke_action(action_name)
   end
 end
 
@@ -31,19 +30,18 @@ class Router
     @routes = []
   end
 
-  # simply adds a new route to the list of routes
+  # adds a new route to the list of routes
   def add_route(pattern, method, controller_class, action_name)
     @routes << Route.new(pattern, method, controller_class, action_name)
   end
 
   # evaluate the proc in the context of the instance
-  # for syntactic sugar :)
   def draw(&proc)
     instance_eval(&proc)
   end
 
   # make each of these methods that
-  # when called add route
+  # when called adds a route
   [:get, :post, :put, :delete].each do |http_method|
     define_method http_method do |pattern, controller_class, action_name|
       add_route(pattern, http_method, controller_class, action_name)

@@ -1,3 +1,6 @@
+# rescues exceptions raised on the server side
+# displays an html page describing the error
+
 require 'erb'
 require 'rack'
 
@@ -5,7 +8,7 @@ class ShowExceptions
   attr_reader :app
 
   TEMPLATE_PATH = File.join(File.dirname(__FILE__),
-    "/templates/rescue.html.erb")
+    "/../templates/rescue.html.erb")
 
   def initialize(app)
     @app = app
