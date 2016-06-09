@@ -1,6 +1,4 @@
 source 'https://rubygems.org'
 
-gem 'rack'
-gem 'byebug'
-gem "rspec", "~> 3.1.0"
-gem "activesupport"
+gem 'rack', "~> 1.6.0"
+gem "activesupport", "~> 4.2.0"

@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'rails_lite'
-  s.version     = '0.0.0'
+  s.version     = '1.0.0'
   s.executables << 'rails_lite'
 
   s.date        = '2016-06-08'
@@ -24,6 +24,6 @@ Gem::Specification.new do |s|
   s.homepage    = 'http://rubygems.org/gems/rails_lite'
   s.license     = 'MIT'
 
-  s.add_dependency 'rack'
-  s.add_dependency 'activesupport'
+  s.add_runtime_dependency 'rack', '~> 1.6', '>= 1.6.0'
+  s.add_runtime_dependency 'activesupport', '~> 4.2', '>= 4.2.0'
 end
