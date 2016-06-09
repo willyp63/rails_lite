@@ -1,7 +1,7 @@
 require 'json'
 
 class Session
-  COOKIE_NAME = '_rails_lite_app'
+  COOKIE_NAME = "_" + Dir.pwd.scan(/\/([^\/]*)/).last[0].underscore
 
   # find the cookie for this app
   # deserialize the cookie into a hash
