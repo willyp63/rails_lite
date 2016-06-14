@@ -1,7 +1,7 @@
 # handles requests for /public/* paths
 # attempts to return the static resource at that path
 # will raise error if resource type is not supported
-# will return 404 if the resource could not be found
+# will respond with 404 if the resource could not be found
 
 require 'rack'
 
@@ -20,25 +20,27 @@ class Static
   def call(env)
     req = Rack::Request.new(env)
 
+    # try to match resource path
     match_resource = /\/public\/(?<rsc>[^.]*).(?<ext>.*)/.match(req.path)
     if match_resource
-      return_resource(match_resource[:rsc], match_resource[:ext])
+      respond_with_resource(match_resource[:rsc], match_resource[:ext])
     else
       @app.call(env)
     end
   end
 
-  def return_resource(name, extension)
+  def respond_with_resource(name, extension)
     unless SUPPORTED_CONTENT_TYPES.keys.include?(extension)
       raise "That static resource type is not supported"
     end
 
+    # attempt to read resource
     resource_path = "#{Dir.pwd}/public/#{name}.#{extension}"
     begin
       content = File.read(resource_path)
       ['200', {'Content-Type' => SUPPORTED_CONTENT_TYPES[extension]}, [content]]
     rescue SystemCallError => e
-      ['404', {'Content-Type' => 'text/plain'}, ["404 Nothing to see here..."]]
+      ['404', {'Content-Type' => 'text/plain'}, ["404 Nothing to see here!"]]
     end
   end
 end

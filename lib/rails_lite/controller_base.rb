@@ -39,7 +39,6 @@ class ControllerBase
     render_content(content, "text/html")
   end
 
-  # Cookies
   def session
     @session ||= Session.new(req)
   end
@@ -48,7 +47,6 @@ class ControllerBase
     @flash ||= Flash.new(req)
   end
 
-  # use this with the router to call action_name (:index, :show, :create...)
   def invoke_action(name)
     check_authenticity_token if @@protect_from_forgery && @req.request_method != "GET"
     send(name)

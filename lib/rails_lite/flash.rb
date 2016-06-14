@@ -1,6 +1,7 @@
 require 'json'
 
 class Flash
+  # project folder name + 'flash'
   COOKIE_NAME = "_" + Dir.pwd.scan(/\/([^\/]*)/).last[0].underscore + "_flash"
 
   def initialize(req)

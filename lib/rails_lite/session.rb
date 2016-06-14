@@ -1,6 +1,7 @@
 require 'json'
 
 class Session
+  # project folder name
   COOKIE_NAME = "_" + Dir.pwd.scan(/\/([^\/]*)/).last[0].underscore
 
   def initialize(req)

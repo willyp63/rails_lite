@@ -1,5 +1,6 @@
 # rescues exceptions raised on the server side
 # displays an html page describing the error
+# and showing the stack trace
 
 require 'erb'
 require 'rack'
