@@ -23,20 +23,18 @@ class ControllerBase
     @res['Location'] = url
   end
 
-  def render_content(content, content_type)
-    build_response
-    @res.write(content)
-    @res['Content-Type'] = content_type
-  end
-
-  # use ERB and binding to evaluate templates
-  # pass the rendered html to render_content
   def render(template_name)
     views_dir = /^(?<dir>.*)_controller$/.match(self.class.to_s.underscore)[:dir]
     path = Dir.pwd + "/app/views/#{views_dir}/#{template_name}.html.erb"
 
     content = ERB.new(File.read(path)).result(binding)
     render_content(content, "text/html")
+  end
+
+  def render_content(content, content_type)
+    build_response
+    @res.write(content)
+    @res['Content-Type'] = content_type
   end
 
   def session
@@ -48,7 +46,9 @@ class ControllerBase
   end
 
   def invoke_action(name)
-    check_authenticity_token if @@protect_from_forgery && @req.request_method != "GET"
+    if @@protect_from_forgery && @req.request_method != "GET"
+      check_authenticity_token
+    end
     send(name)
 
     # render appropriate view if no response

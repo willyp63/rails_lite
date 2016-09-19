@@ -1,0 +1,30 @@
+<h1>Hi my name is <%= @dog.name %>!</h1>
+
+<% if @toys.empty? %>
+  <h3>I don't have any toys :(</h3>
+<% else %>
+  <h3>These are my toys</h3>
+  <ul>
+    <% @toys.each do |toy| %>
+    <li>
+      <%= toy.name %>
+      <form action="/toys/<%= toy.id %>" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Remove Toy!">
+      </form>
+    </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<form action="/dogs/<%= @dog.id %>/toys" method="post">
+  <input type="hidden" name="toy[dog_id]" value="<%= @dog.id %>">
+
+  <label for="toy_name">Name: </label>
+  <input type="text" name="toy[name]" id="toy_name">
+  <br><br>
+
+  <input type="submit" value="Add Toy!">
+</form>
+
+<a href="/dogs">All Dogs</a>

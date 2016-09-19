@@ -1,0 +1,19 @@
+<h3>Tell us your name!</h3>
+
+<% if flash[:errors] %>
+  <ul>
+  <% flash[:errors].each do |err| %>
+    <li>
+      <%= err %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
+
+<form action="/session" method="post">
+  <label for="user_name">Username: </label>
+  <input type="text" name="user[name]" id="user_name">
+  <br><br>
+
+  <input type="submit" value="Log In">
+</form>

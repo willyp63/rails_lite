@@ -1,0 +1,26 @@
+<% if current_user %>
+  <h3>Logged in as: <%= current_user.name %></h3>
+  <form action="/session" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Log Out!">
+  </form>
+<% else %>
+  <a href="/users/new">Sign Up</a>
+  <a href="/session/new">Log In</a>
+<% end %>
+
+<h1>Here are all the dogs</h1>
+
+<ul>
+  <% @dogs.each do |dog| %>
+  <li>
+    <a href="/dogs/<%= dog.id %>"><%= dog.name %></a>
+    <form action="/dogs/<%= dog.id %>" method="post">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Remove Dog">
+    </form>
+  </li>
+  <% end %>
+</ul>
+
+<a href="/dogs/new">Create New Dog</a>

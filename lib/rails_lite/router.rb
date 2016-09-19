@@ -85,7 +85,7 @@ class Router
   end
 
   # adds multiple routes for a collection
-  def resources(name, options = {})
+  def resources(name, options = {}, &prc)
     resources_from_options(options).each do |rsc|
       pattern = RESOURCE_PATTERNS[rsc].sub("x", name.to_s)
       controller_class = (name.to_s.capitalize + "Controller").constantize
@@ -94,12 +94,20 @@ class Router
   end
 
   # adds multiple routes for a member
-  def resource(name, options = {})
+  def resource(name, options = {}, &prc)
     resources_from_options(options).each do |rsc|
       pattern = RESOURCE_PATTERNS[rsc].sub("x", name.to_s).sub("/(?<id>\\d+)", "")
       controller_class = (name.to_s.pluralize.capitalize + "Controller").constantize
       add_route(Regexp.new(pattern), RESOURCE_METHODS[rsc], controller_class, rsc)
     end
+  end
+
+  def member(name)
+    # TODO
+  end
+
+  def collection(name)
+    # TODO
   end
 
   private

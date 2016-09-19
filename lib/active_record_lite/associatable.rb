@@ -9,7 +9,7 @@ class AssocOptions
   end
 
   def table_name
-    "#{class_name}s".underscore
+    class_name.pluralize.underscore
   end
 end
 
