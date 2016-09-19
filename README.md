@@ -11,7 +11,7 @@ From within the repo:
 * Launch the Server: `rails_lite server`
 * Create/Reset the Database: `rails_lite reset_database`
 
-# Launch the Example App
+## Launch the Example App
 From within the repo:
 * `cd example_app`
 * `rails_lite s`
