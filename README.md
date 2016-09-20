@@ -11,11 +11,25 @@ From within the repo:
 * Launch the Server: `rails_lite server`
 * Create/Reset the Database: `rails_lite reset_database`
 
+ Routes can easily be defined in `config/routes.rb`. The database can be built manually or from within `db/[project_name].sql`.
+
+ Your Controllers need to subclass `ApplicationController` and models need to subclass `ModelBase`.
+
+ Views are written in HTML and ERB.
+
 ## Launch the Example App
 From within the repo:
 * `cd example_app`
 * `rails_lite s`
 
-## Explanation
+### Implementation
 
-...
+Rails Lite is built on top of a simple webserver interface called Rack. The Rails Lite router handles incoming HTTP requests and passes them off to a controller's action based on the application's routes. The controller is free to make database interactions, but must render a view or redirect to another URL. The result of the action is turned into an HTTP response and sent back to the client.
+
+Controllers have access to both a Flash and a Session object, allowing information to persist for the next request.
+
+Rails Lite's ORM supports one-to-one, one-to-many, and even through relations. This is achieved by saving information about the tables and keys for each relationship. Meta programming is then used to create retrieval methods for relationships and column values.
+
+Rails Lite uses a SQLite database and the ruby gem active_support-inflector convert between naming conventions.
+
+ Custom middleware is used for rendering server side errors and sending static resources.
