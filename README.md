@@ -8,7 +8,7 @@ Rails Lite is built on top of a simple webserver interface called Rack. The Rail
 
 Controllers have access to both a Flash and a Session object, allowing information to persist for the next request.
 
-Rails Lite's ORM supports one-to-one, one-to-many, and even through relations. This is achieved by saving information about the tables and keys for each relationship. Meta programming is then used to create retrieval methods for relationships and column values.
+Rails Lite's ORM supports one-to-one, one-to-many, and through relations. This is achieved by saving information about the tables and keys for each relationship. Meta programming is then used to create retrieval methods for relationships and column values.
 
 Rails Lite uses a SQLite database and the ruby gem active_support-inflector convert between naming conventions.
 
