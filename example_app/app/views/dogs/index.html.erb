@@ -14,6 +14,8 @@
 <ul>
   <% @dogs.each do |dog| %>
   <li>
+    <img src="/public/dog<%= rand(3) + 1 %>.jpg" alt="dog image" />
+    <br/>
     <a href="/dogs/<%= dog.id %>"><%= dog.name %></a>
     <form action="/dogs/<%= dog.id %>" method="post">
       <input type="hidden" name="_method" value="DELETE">

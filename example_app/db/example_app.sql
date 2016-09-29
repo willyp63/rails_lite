@@ -21,10 +21,7 @@ INSERT INTO
   dogs (id, name)
 VALUES
   (1, "Breakfast"),
-  (2, "Earl"),
-  (3, "Haskell"),
-  (4, "Markov"),
-  (5, "Joey");
+  (2, "Earl");
 
 INSERT INTO
   toys (id, name, dog_id)
@@ -33,4 +30,4 @@ VALUES
   (2, "Tire", 1),
   (3, "Squishy Ball", 2),
   (4, "Bone", 2),
-  (5, "Stuffed Animal", 3);
+  (5, "Stuffed Animal", 1);

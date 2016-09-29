@@ -15,8 +15,14 @@ Rails Lite uses a SQLite database and the ruby gem active_support-inflector conv
  Custom middleware is used for rendering server side errors and sending static resources.
 
 ## installation
-From within the repo:
+First download or clone the repo. Then from within the repo:
 * `gem install rails_lite-1.0.0.gem`
+
+## Launch the Example App!
+First download or clone the repo. Then from within the repo:
+* `cd example_app`
+* `rails_lite rdb`
+* `rails_lite s`
 
 ## Documentation
 * Create new Project: `rails_lite new [project_name]`
@@ -28,8 +34,3 @@ From within the repo:
  Your Controllers need to subclass `ApplicationController` and models need to subclass `ModelBase`.
 
  Views are written in HTML and ERB.
-
-## Launch the Example App
-From within the repo:
-* `cd example_app`
-* `rails_lite s`
