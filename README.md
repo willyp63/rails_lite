@@ -15,11 +15,12 @@ Rails Lite uses a SQLite database and the ruby gem active_support-inflector conv
  Custom middleware is used for rendering server side errors and sending static resources.
 
 ## installation
-First download or clone the repo. Then from within the repo:
-* `gem install rails_lite-1.0.0.gem`
+- Download or clone the repo.
+- Navigate to the root directory.
+- `gem install rails_lite-1.0.0.gem`
 
 ## Launch the Example App!
-First download or clone the repo. Then from within the repo:
+- Follow installation instructions.
 * `cd example_app`
 * `rails_lite rdb`
 * `rails_lite s`
