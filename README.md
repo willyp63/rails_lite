@@ -26,6 +26,9 @@ Rails Lite uses a SQLite database and the ruby gem active_support-inflector conv
 * `rails_lite s`
 * Open your browser and navigate to `http://localhost:3000/`
 
+![screenshot]
+[screenshot]: ./docs/screenshots/example-app.jpg
+
 ## Documentation
 * Create new Project: `rails_lite new [project_name]`
 * Launch the Server: `rails_lite server`
